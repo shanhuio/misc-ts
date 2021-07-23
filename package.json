@@ -8,6 +8,8 @@
         "dist/*.d.ts"
     ],
     "scripts": {
+        "prepare": "tsc",
+        "fmt": "tsfmt -r `find ./src -name \"*.tsx\"`",
         "test": "echo 'no test' && exit 1"
     },
     "author": "Shanhu Tech Inc. <contact@shanhu.io>",

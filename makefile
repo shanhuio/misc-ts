@@ -1,11 +1,8 @@
-.PHONY: tsc fmt dist
+.PHONY: compile dist
 
-tsc: 
-	tsc
+compile:
+	npm run prepare
 
-fmt:
-	tsfmt -r `find ./src -name "*.tsx"`
-
-dist: tsc
+dist: compile
 	npm pack
 	mv shanhuio-misc-0.0.0.tgz misc.tgz
