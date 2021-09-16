@@ -40,7 +40,8 @@ export class Core {
     }
     
     gotoPath(path: string) {
-        return this.switcher.goto(path)
+        this.switcher.goto(path)
+        this.redraw()
     }
 }
 

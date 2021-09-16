@@ -41,17 +41,10 @@ export class Switcher {
     currentPath: string
     currentPage: Page = null
 
-    constructor(config: SwitcherConfig, init: string) {
+    constructor(config: SwitcherConfig, initPath: string) {
         this.handler = config.handler
         this.prefix = config.prefix ? config.prefix : '/'
-        this.initPath = init
-
-        this.install()
-        this.enter(init)
-    }
-
-    install() {
-        window.onpopstate = (ev: PopStateEvent) => { this.popState(ev) }
+        this.initPath = initPath
     }
 
     popState(ev: PopStateEvent) {
@@ -91,5 +84,10 @@ export class Switcher {
         this.currentPath = path
         let meta = page.enter(path)
         window.document.title = meta.title
+    }
+
+    init() {
+        window.onpopstate = (ev: PopStateEvent) => { this.popState(ev) }
+        this.enter(this.initPath)
     }
 }
