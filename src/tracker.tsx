@@ -40,7 +40,7 @@ export class Tracker {
     goto(next: State) {
         // if url is the same, then do not switch
         let url = next.url()
-        if (this.state && url == this.state.url()) { return }
+        if (this.state && url == this.state.url()) return
         history.pushState(next.encode(), '', url)
         this.enterState(next)
     }
