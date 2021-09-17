@@ -74,7 +74,7 @@ export class Switcher {
             return
         }
 
-        if (path != this.currentPath) {
+        if (this.currentPage && path != this.currentPath) {
             // We only call exit when changing path.
             // This makes sure the state is cleared.
             this.currentPage.exit()
