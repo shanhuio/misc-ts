@@ -20,7 +20,7 @@ export interface Meta {
 }
 
 export interface Page {
-    enter(path: string): Meta
+    enter(path: string, pageData: any): Meta
     render(): JSX.Element
     exit(): void
 }
@@ -67,7 +67,9 @@ export class Switcher {
         this.enter(nextPath)
     }
 
-    enter(path: string) {
+    enter(path: string) { this.enterWithData(path, null) }
+
+    enterWithData(path: string, pageData: any) {
         let page = this.handler.handle(path)
         if (!page) {
             console.log('invalid path: ' + path)
@@ -82,12 +84,12 @@ export class Switcher {
 
         this.currentPage = page
         this.currentPath = path
-        let meta = page.enter(path)
+        let meta = page.enter(path, pageData)
         window.document.title = meta.title
     }
 
-    init() {
+    init(pageData: any) {
         window.onpopstate = (ev: PopStateEvent) => { this.popState(ev) }
-        this.enter(this.initPath)
+        this.enterWithData(this.initPath, pageData)
     }
 }
