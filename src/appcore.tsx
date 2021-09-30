@@ -38,7 +38,7 @@ export class Core {
     goto(state: tracker.State) {
         return this.tracker.goto(state)
     }
-    
+
     gotoPath(path: string) {
         this.switcher.goto(path)
         this.redraw()
