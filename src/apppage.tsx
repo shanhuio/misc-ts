@@ -90,6 +90,7 @@ export class Switcher {
 
     init(pageData: any) {
         window.onpopstate = (ev: PopStateEvent) => { this.popState(ev) }
+        history.replaceState(this.initPath, '')
         this.enterWithData(this.initPath, pageData)
     }
 }
