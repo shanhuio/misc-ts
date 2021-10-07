@@ -13,12 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-export function ID(n: number): string {
-    var ret = ''
-    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    for (var i = 0; i < n; i++) {
-        ret += chars.charAt(Math.floor(Math.random() * chars.length))
-    }
+import * as React from 'react' // for tsx
 
-    return ret
+export function isModifiedClick(ev: React.MouseEvent): boolean {
+    return (ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey)
 }
