@@ -14,19 +14,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as ajax from './ajax'
-import * as tracker from './tracker'
 import * as redraw from './redraw'
 import * as apppage from './apppage'
 
 export class Core {
     redraw: redraw.Redraw
-    tracker: tracker.Tracker
     caller: ajax.Caller
     switcher: apppage.Switcher
 
-    constructor(r: redraw.Redraw, t: tracker.Tracker, s: apppage.Switcher) {
+    constructor(r: redraw.Redraw, s: apppage.Switcher) {
         this.redraw = r
-        this.tracker = t
         this.caller = new ajax.Caller()
         this.switcher = s
     }
@@ -35,20 +32,12 @@ export class Core {
         this.caller.call(url, req, cb)
     }
 
-    goto(state: tracker.State) {
-        return this.tracker.goto(state)
-    }
-
     gotoPath(path: string) {
         this.switcher.goto(path)
         this.redraw()
     }
 }
 
-export function make(r: redraw.Redraw, t: tracker.Tracker): Core {
-    return new Core(r, t, null)
-}
-
-export function makeWithSwitch(r: redraw.Redraw, s: apppage.Switcher): Core {
-    return new Core(r, null, s)
+export function make(r: redraw.Redraw, s: apppage.Switcher): Core {
+    return new Core(r, s)
 }
