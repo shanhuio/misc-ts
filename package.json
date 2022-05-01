@@ -1,5 +1,5 @@
 {
-    "name": "@shanhuio/lib-misc",
+    "name": "@shanhuio/misc",
     "version": "0.0.0",
     "description": "Misc library",
     "main": "dist/index.js",
